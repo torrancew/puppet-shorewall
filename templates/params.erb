@@ -1,0 +1,17 @@
+###############################################################################
+#
+# Shorewall version 4 - Params File
+#
+# /etc/shorewall/params
+#
+# This file is managed by Puppet.
+#
+###############################################################################
+
+<% if @params and @params != {} -%>
+<%   @params.each_pair do |param, value| -%>
+<%=    param.to_s.upcase %>="<%= value.to_s %>"
+<%   end -%>
+
+<% end -%>
+#LAST LINE -- DO NOT REMOVE
