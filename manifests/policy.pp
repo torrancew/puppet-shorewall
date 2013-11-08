@@ -54,7 +54,9 @@ define shorewall::policy(
   $conn_limit  = '-',
   $order       = '50',
 ) {
-  Shorewall::Policy[$title] ~> Class['shorewall::service']
+  Class['shorewall::configure'] ->
+    Shorewall::Policy[$title]   ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "policy_${title}":
