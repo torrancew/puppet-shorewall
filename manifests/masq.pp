@@ -70,7 +70,9 @@ define shorewall::masq(
   $orig_dest = '-',
   $order     = '50',
 ) {
-  Shorewall::Masq[$title] ~> Class['shorewall::service']
+  Class['shorewall::configure'] ->
+    Shorewall::Masq[$title]     ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "masq_${title}":
