@@ -53,7 +53,10 @@ define shorewall::zone(
   $out_opts = '-',
   $order    = '50'
 ) {
-  Shorewall::Zone[$title] ~> Class['shorewall::service']
+
+  Class['shorewall::configure'] ->
+    Shorewall::Zone[$title]     ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "zone_${title}":
