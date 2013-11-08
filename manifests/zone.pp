@@ -12,7 +12,7 @@
 #   The type of the zone
 #   Defaults to 'ip'
 #
-# [*opts*]
+# [*options*]
 #   The options for the zone
 #   Defaults to '-'
 #
@@ -48,7 +48,7 @@
 define shorewall::zone(
   $zone     = $title,
   $type     = '-',
-  $opts     = '-',
+  $options  = '-',
   $in_opts  = '-',
   $out_opts = '-',
   $order    = '50'
@@ -59,7 +59,7 @@ define shorewall::zone(
     "zone_${title}":
       order   => $order,
       target  => '/etc/shorewall/zones',
-      content => "${zone}    ${type}    ${opts}    ${in_opts}    ${out_opts}\n";
+      content => "${zone}    ${type}    ${options}    ${in_opts}    ${out_opts}\n";
   }
 }
 
