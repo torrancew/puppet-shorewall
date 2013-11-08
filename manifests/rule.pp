@@ -86,7 +86,9 @@ define shorewall::rule(
   $switch      = '-',
   $order       = '50',
 ) {
-  Shorewall::Rule[$title] ~> Class['shorewall::service']
+  Class['shorewall::configure'] ->
+    Shorewall::Rule[$title]     ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "rule_${title}":
