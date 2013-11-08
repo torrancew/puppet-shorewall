@@ -43,7 +43,9 @@ define shorewall::host(
   $options  = '-',
   $order    = '50'
 ) {
-  Shorewall::Host[$title] ~> Class['shorewall::service']
+  Class['shorewall::configure'] ->
+    Shorewall::Host[$title]     ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "host_${title}":
