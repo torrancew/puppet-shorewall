@@ -12,7 +12,7 @@
 #   The name of the interface
 #   Defaults to $title
 #
-# [*opts*]
+# [*options*]
 #   The options for the interface
 #   Defaults to '-'
 #
@@ -40,16 +40,18 @@
 define shorewall::interface(
   $zone,
   $interface = $title,
-  $opts      = '-',
+  $options   = '-',
   $order     = '50'
 ) {
-  Shorewall::Interface[$title] ~> Class['shorewall::service']
+  Class['shorewall::configure']  ->
+    Shorewall::Interface[$title] ~>
+    Class['shorewall::service']
 
   concat::fragment {
     "interface_${title}":
       order   => $order,
       target  => '/etc/shorewall/interfaces',
-      content => "${zone}    ${interface}    ${opts}\n";
+      content => "${zone}    ${interface}    ${options}\n";
   }
 }
 
