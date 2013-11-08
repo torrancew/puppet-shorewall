@@ -12,7 +12,7 @@
 #   The host reference to associate with this entry
 #   Defaults to $title
 #
-# [*opts*]
+# [*options*]
 #   The options for the host
 #   Defaults to '-'
 #
@@ -40,7 +40,7 @@
 define shorewall::host(
   $zone,
   $hosts    = $title,
-  $opts     = '-',
+  $options  = '-',
   $order    = '50'
 ) {
   Shorewall::Host[$title] ~> Class['shorewall::service']
@@ -49,7 +49,7 @@ define shorewall::host(
     "host_${title}":
       order   => $order,
       target  => '/etc/shorewall/hosts',
-      content => "${zone}    ${hosts}    ${opts}\n";
+      content => "${zone}    ${hosts}    ${options}\n";
   }
 }
 
