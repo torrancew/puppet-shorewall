@@ -43,8 +43,8 @@ define shorewall::interface(
   $options   = '-',
   $order     = '50'
 ) {
-  Class['shorewall::configure']  ->
-    Shorewall::Interface[$title] ~>
+  include shorewall::configure
+  Shorewall::Interface[$title] ~>
     Class['shorewall::service']
 
   concat::fragment {

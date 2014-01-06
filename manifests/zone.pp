@@ -54,8 +54,8 @@ define shorewall::zone(
   $order    = '50'
 ) {
 
-  Class['shorewall::configure'] ->
-    Shorewall::Zone[$title]     ~>
+  include 'shorewall::configure'
+  Shorewall::Zone[$title] ~>
     Class['shorewall::service']
 
   concat::fragment {
