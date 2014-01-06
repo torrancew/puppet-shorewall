@@ -66,6 +66,7 @@ class shorewall::configure {
   }
 
   # Create concat resources for modularized files
+  include concat::setup
   concat {
     '/etc/shorewall/hosts':
       owner => 'root',
