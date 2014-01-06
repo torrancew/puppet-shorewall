@@ -24,6 +24,7 @@
 # unless otherwise noted.
 #
 class shorewall::install {
+  package { 'ipset':     ensure => installed }
   package { 'shorewall': ensure => installed }
 }
 
